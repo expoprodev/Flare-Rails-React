@@ -1,0 +1,35 @@
+<h3>Locations</h2>
+<% if can? :manage, Location %>
+  <a href="<%= new_location_path %>" class="button">Add</a>
+<% end %>
+<div class="table-scroll">
+  <table class="hover dashboard-activity dtable">
+    <thead>
+      <tr>
+        <th width="">Name</th>
+        <th width="">Address</th>
+        <th width="">Address Ext</th>
+        <th width="">City</th>
+        <th width="">State</th>
+        <th width="">Zip</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @locations.sort_by(&:name).each do |location| %>
+      <tr>
+        <td><%= link_to location.name, edit_location_path(location) %></td>
+        <td><%= location.address %></td>
+        <td><%= location.address_ext %></td>
+        <td><%= location.city %></td>
+        <td><%= location.state %></td>
+        <td><%= location.zip %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<script>
+$(document).ready(function(){
+    $('.dtable').DataTable();
+} );
+</script>

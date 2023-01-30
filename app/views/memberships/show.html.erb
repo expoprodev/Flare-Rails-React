@@ -1,0 +1,16 @@
+<%= react_component("Memberships/ShowMembership", {
+     membership: @membership,
+     additional_members: @membership.additional_members.to_a,
+     stripe_membership: @stripe_membership,
+     payment_methods: @payment_methods,
+     stripe_location_id: current_user.default_location.stripe_location_id,
+     audits: @audits,
+     plans: @plans.order(:default, :name),
+     tax_rates: @tax_rates.order(:default, :display_name),
+     coupons: @coupons.order(:name),
+     charges: @charges,
+     checkins: @checkins,
+     location_name: @membership.location.name,
+     location_id: @membership.location.id,
+     locations: current_user.company.locations
+   }) %>

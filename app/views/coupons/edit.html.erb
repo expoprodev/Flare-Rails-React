@@ -1,0 +1,4 @@
+<%= simple_form_for(@coupon) do |f| %>
+  <%= f.error :base %>
+  <%= react_component("Coupons/EditCoupon", { coupon: @coupon }) %>
+<% end %>

@@ -1,0 +1,32 @@
+<div class="clearfix">
+<h3 class="float-left">Users</h3>
+<% if can? :create, User %>
+  <%= link_to 'Invite User', new_user_path, class: 'button float-right' %>
+<% end %>
+</div>
+<div class="table-scroll">
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Last Logged In</th>
+      <th>Role</th>
+      <th>Pin</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.sort_by(&:display_name).each do |user|
+    last_signed_in = user.last_sign_in_at ? user.last_sign_in_at.in_time_zone(current_user.timezone).strftime("%m/%d/%Y %I:%M %P") : 'Never signed in' %>
+      <tr>
+        <td><%= link_to user.display_name, edit_user_path(user) %></td>
+        <td><%= link_to user.email, edit_user_path(user) %></td>
+        <td><%= link_to last_signed_in, edit_user_path(user) %></td>
+        <td><%= link_to user.role, edit_user_path(user) %></td>
+        <td><%= link_to user.pin, edit_user_path(user) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>

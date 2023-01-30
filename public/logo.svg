@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 588.44 127.1">
+  <defs>
+    <style>
+      .cls-1 {
+        font-size: 33.03px;
+      }
+
+      .cls-1, .cls-2 {
+        fill: #231f20;
+        font-family: BebasNeueRegular, 'Bebas Neue';
+      }
+
+      .cls-3 {
+        letter-spacing: .08em;
+      }
+
+      .cls-4 {
+        letter-spacing: .08em;
+      }
+
+      .cls-5 {
+        letter-spacing: .06em;
+      }
+
+      .cls-6 {
+        letter-spacing: .03em;
+      }
+
+      .cls-2 {
+        font-size: 98.33px;
+      }
+
+      .cls-7 {
+        letter-spacing: -.04em;
+      }
+    </style>
+  </defs>
+  <path d="M57.11,30.45h-13.18v17.58H26.36v13.18h17.57v17.57h13.18v-17.57h17.57v-13.18h-17.57V30.45Zm65.9,30.76h-4.39v4.39h4.39v-4.39Zm13.18,0v4.39h4.39v-4.39h-4.39Zm-13.18,0h13.18v-13.18h-13.18v13.18Zm52.72,39.54v-13.18h-4.4v-17.57h-4.39v-30.75h-4.39V21.66h-8.79v-4.4h-4.39v-4.39h-13.18v-4.39h-8.79v4.39h-4.39v4.39h-13.18v4.4h-39.54v-4.4h-13.18v-4.39h-4.39v-4.39h-8.79v4.39h-13.18v4.39h-4.39v4.4h-8.79v17.57h-4.39v30.75h-4.39v17.57H4.39v13.18H0v17.57H4.39v4.39h4.39v4.39h13.18v-4.39h4.39v-4.39h4.39v-4.39h4.39v-4.39h8.79v-4.39h4.39v-4.39h4.39v-4.39h8.79v4.39h8.79v4.39h8.79v-4.39h4.39v-4.39h4.39v-8.79h-4.39v-4.39h13.18v4.39h-4.39v8.79h4.39v4.39h4.39v4.39h8.79v-4.39h8.79v-4.39h8.79v4.39h4.4v4.39h4.39v4.39h8.79v4.39h4.39v4.39h4.39v4.39h4.39v4.39h13.18v-4.39h4.4v-4.39h4.39v-17.57h-4.39Zm-96.66-4.39h-13.18v-13.18h13.18v13.18Zm0-26.36h-4.39v4.39h-4.39v4.39h-8.79v4.39h-21.97v-4.39h-8.79v-4.39h-4.39v-8.79h-4.39v-21.97h4.39v-8.79h4.39v-4.39h8.79v-4.39h26.36v4.39h4.39v4.39h4.39v4.39h4.39v30.75Zm17.57-26.36h-8.79v-8.79h8.79v8.79Zm17.57,52.72h-13.18v-13.18h13.18v13.18Zm43.93-35.15h-4.39v4.39h-13.18v13.18h-4.39v4.39h-13.18v-4.39h-4.39v-13.18h-13.18v-4.39h-4.39v-13.18h4.39v-4.39h13.18v-13.18h4.39v-4.39h13.18v4.39h4.39v13.18h13.18v4.39h4.39v13.18Zm-21.97-13.18h4.39v-4.39h-4.39v4.39Zm-13.18,0v-4.39h-4.39v4.39h4.39Z"/>
+  <text class="cls-2" transform="translate(205.57 83.58)"><tspan x="0" y="0">press s</tspan><tspan class="cls-7" x="235.58" y="0">t</tspan><tspan x="267.24" y="0">art</tspan></text>
+  <text class="cls-1" transform="translate(209.66 119.85)"><tspan class="cls-4" x="0" y="0">App bui</tspan><tspan class="cls-6" x="93.02" y="0">l</tspan><tspan class="cls-3" x="105.15" y="0">t for </tspan><tspan class="cls-5" x="180.23" y="0">y</tspan><tspan class="cls-3" x="195.79" y="0">our arcade</tspan></text>
+</svg>

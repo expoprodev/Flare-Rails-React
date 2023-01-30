@@ -1,0 +1,30 @@
+<mjml>
+  <mj-body>
+    <mj-raw>
+      <!-- Company Header -->
+    </mj-raw>
+    <mj-section background-color="#f0f0f0">
+      <mj-column>
+        <mj-text font-style="italic" font-size="20px" color="#626262"><%=@membership.location.name %></mj-text>
+      </mj-column>
+    </mj-section>
+
+    <mj-raw>
+      <!-- Intro text -->
+    </mj-raw>
+    <mj-section background-color="#fafafa">
+      <mj-column width="400px">
+        <mj-text font-style="italic" font-size="20px" font-family="Helvetica Neue" color="#626262">Your subscription is now cancelled.</mj-text>
+        <mj-text color="#525252">Hey <%=@membership.name%>, we're sorry to see you go! Your membership will be active until your current term ends but you will no longer be billed. We hope to see you back in the future. If there us anything we could have done better, please let us know.</mj-text>
+      </mj-column>
+    </mj-section>
+    <mj-raw>
+      <!-- Side image -->
+    </mj-raw>
+    <mj-section background-color="#fbfbfb">
+      <mj-column width="400px">
+        <mj-button background-color="#F45E43" href="http://crowdflare.app/">Memberships powered by Crowdflare</mj-button>
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>

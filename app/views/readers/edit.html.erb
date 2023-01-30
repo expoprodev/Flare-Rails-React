@@ -1,0 +1,8 @@
+<div class="grid-x">
+  <div class="cell small-12 medium-4">
+    <%= simple_form_for(@reader) do |f| %>
+      <%= f.error :base %>
+      <%= react_component("Readers/EditReader", {  reader: @reader }) %>
+    <% end %>
+  </div>
+</div>

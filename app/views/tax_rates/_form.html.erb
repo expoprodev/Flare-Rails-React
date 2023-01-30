@@ -1,0 +1,5 @@
+
+<%= simple_form_for(@tax_rate) do |f| %>
+  <%= f.error :base %>
+  <%= react_component("TaxRates/NewTaxRate", { tax_rate: @tax_rate }) %>
+<% end %>

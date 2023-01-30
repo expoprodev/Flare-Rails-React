@@ -1,0 +1,14 @@
+<div class="grid-x">
+  <div class="cell small-12 medium-4">
+    <%= simple_form_for @company do |f| %>
+      <%= f.error :base %>
+      <%= f.input :name %>
+      <%= f.input :address %>
+      <%= f.input :address_ext %>
+      <%= f.input :city %>
+      <%= f.input :state %>
+      <%= f.input :zip %>
+      <%= f.submit "Save", class: "button" %>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,7 @@
+<p id="notice"><%= notice %></p>
+<% if @report.document.attached? %>
+  <%= link_to "download", url_for(@report.document.download), target: "_blank" %>
+<% end %>
+
+
+<%= link_to "Edit", edit_report_path(@report) %> |

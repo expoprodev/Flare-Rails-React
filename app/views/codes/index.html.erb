@@ -1,0 +1,135 @@
+<div class="clearfix">
+  <h3 class="float-left">Codes</h3>
+  <% if can? :manage, Code %>
+    <a href="<%= new_code_path %>" class="button float-right">Add</a>
+  <% end %>
+  <% if can? :manage, Code %>
+    <a href="<%= new_group_path %>" class="button float-right">Create Group</a>
+  <% end %>
+</div>
+<div class="">
+  Estimated Monthly Cost: <strong><%= number_to_currency @codes.active.count * (Code::PRICE / 100) %></strong>
+</div>
+<br/>
+<ul class="tabs" data-tabs id="example-tabs">
+  <li class="tabs-title is-active"><a data-tabs-target="all" href="#all">All</a></li>
+  <li class="tabs-title"><a data-tabs-target="active" href="#active">Active</a></li>
+  <li class="tabs-title"><a data-tabs-target="inactive" href="#inactive">Inactive</a></li>
+</ul>
+<div class="tabs-content" data-tabs-content="example-tabs">
+  <div class="tabs-panel is-active" id="all">
+    <div class="table-scroll">
+      <% if !@codes.empty? %>
+        <table class="dtable">
+          <thead>
+            <tr>
+              <th width="200">Code</th>
+              <th>Label</th>
+              <th>Group</th>
+              <th>Status</th>
+              <th># of Incidents</th>
+              <th>Tags</th>
+              <th width="150">Created</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @codes.sort_by(&:code).each.with_index do |code, i| %>
+              <tr>
+                <td><%= link_to code.code, code %></td>
+                <td><%= code.label %></td>
+                <td><%= code.display_group_name %></td>
+                <td><%= code.display_status %></td>
+                <td><%= @counts[code.id] || 0 %></td>
+                <td>
+                  <% code.tags.each do |tag| %>
+                    <span class="label"><%= tag.name %></span>
+                  <% end %>
+                </td>
+                <td><%= code.created_at.in_time_zone(current_user.timezone).strftime("%m/%d/%Y") %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% else %>
+        <div>No codes.</div>
+      <% end %>
+    </div>
+  </div>
+  <div class="tabs-panel" id="active">
+    <div class="table-scroll">
+      <% if !@codes.active.empty? %>
+        <table class="dtable">
+          <thead>
+            <tr>
+              <th width="200">Code</th>
+              <th>Label</th>
+              <th>Status</th>
+              <th># of Incidents</th>
+              <th>Tags</th>
+              <th width="150">Created</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @codes.active.sort_by(&:code).each.with_index do |code, i| %>
+              <tr>
+                <td><%= link_to code.code, code %></td>
+                <td><%= code.label %></td>
+                <td><%= code.display_status %></td>
+                <td><%= @counts[code.id] || 0 %></td>
+                <td>
+                  <% code.tags.each do |tag| %>
+                    <span class="label"><%= tag.name %></span>
+                  <% end %>
+                </td>
+                <td><%= code.created_at.in_time_zone(current_user.timezone).strftime("%m/%d/%Y") %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% else %>
+        <div>No codes have been added.</div>
+      <% end %>
+    </div>
+  </div>
+  <div class="tabs-panel" id="inactive">
+    <div class="table-scroll">
+      <% if !@codes.inactive.empty? %>
+        <table class="dtable">
+          <thead>
+            <tr>
+              <th width="200">Code</th>
+              <th>Label</th>
+              <th>Status</th>
+              <th># of Incidents</th>
+              <th>Tags</th>
+              <th width="150">Created</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @codes.inactive.sort_by(&:code).each.with_index do |code, i| %>
+              <tr>
+                <td><%= link_to code.code, code %></td>
+                <td><%= code.label %></td>
+                <td><%= code.display_status %></td>
+                <td><%= @counts[code.id] || 0 %></td>
+                <td>
+                  <% code.tags.each do |tag| %>
+                    <span class="label"><%= tag.name %></span>
+                  <% end %>
+                </td>
+                <td><%= code.created_at.in_time_zone(current_user.timezone).strftime("%m/%d/%Y") %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% else %>
+        <div>No codes inactive.</div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<script>
+  $(document).ready(function(){
+      $('.dtable').DataTable();
+  } );
+</script>

@@ -1,0 +1,64 @@
+<%= react_component("Navbar/Sidebar") %>
+
+<div class="top-bar show-for-medium">
+  <div class="top-bar-left" style="display: flex; align-items:center">
+      <div class="logo">
+        <a href="/"><%= image_tag "logo@2x.png" %></a>
+      </div>
+      <div class="">
+        <% if !current_user.company.locations.blank? %>
+        <ul class="dropdown menu locations-select" data-dropdown-menu data-disable-hover="true" data-click-open="true">
+          <li class="has-submenu">
+            <a href="#0"><%= current_user.default_location.name %></a>
+            <ul class="submenu menu vertical" data-submenu>
+                <li><%= link_to "Overview All", dashboard_overview_path %></li>
+                <% current_user.company.locations.each do |l| %>
+                <li><%= link_to l.name, update_default_location_path(l.id) %></li>
+                <% end %>
+                <li><%= link_to "Create new location", new_location_path %></li>
+            </ul>
+          </li>
+        </ul>
+        <% end %>
+      </div>
+  </div>
+  <div class="top-bar-right">
+   <!--  <% if ((DateTime.now.to_i - current_user.company.created_at.to_i) > 30.days.to_i) %> <span class="free-trial">Currently in Free Trial</span><% end %>-->
+    <% if can? :manage, :messages %>
+      <%= link_to messages_path, { style: "float: left; margin-right: 15px;" } do %>
+        <i class="fa fa-envelope"></i>
+      <% end %>
+    <% end %>
+
+    <ul class="dropdown menu" data-dropdown-menu data-disable-hover="true" data-click-open="true">
+      <li class="has-submenu">
+        <a><%= current_user.display_name %></a>
+        <ul class="submenu menu vertical" data-submenu>
+          <li><a href="<%= edit_user_path(current_user) %>">My Account</a></li>
+          <% if can? :create, User %>
+            <li><a href="<%= users_path %>">Manage Users</a></li>
+          <% end %>
+          <% if can? :manage, Location %>
+            <li><a href="<%= locations_path %>">Manage Locations</a></li>
+          <% end %>
+          <% if can? :manage, Response %>
+            <li><a href="<%= responses_path %>">Manage Responses</a></li>
+          <% end %>
+          <% if can? :manage, :billing %>
+            <li><a href="<%= billing_path %>">Billing</a></li>
+          <% end %>
+          <% if can? :manage, Report %>
+            <li><a href="<%= reports_path %>">Reports</a></li>
+          <% end %>
+          <% if can? :index, :setting %>
+            <li><a href="<%= settings_path %>">Settings & Information</a></li>
+          <% end %>
+          <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
+        </ul>
+      </li>
+    </ul>
+    <%= link_to lock_path, { style: "float: left; margin: 0 40px;" } do %>
+        <i class="fa fa-lock fa-2x"></i>
+      <% end %>
+  </div>
+</div>

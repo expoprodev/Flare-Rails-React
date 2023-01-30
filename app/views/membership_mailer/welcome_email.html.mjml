@@ -1,0 +1,114 @@
+<mjml>
+  <mj-body>
+    <mj-raw>
+      <!-- Company Header -->
+    </mj-raw>
+    <mj-section background-color="#f0f0f0">
+      <mj-column>
+        <mj-text font-style="italic" font-size="20px" color="#626262"
+          ><%=@membership.location.name %></mj-text
+        >
+      </mj-column>
+    </mj-section>
+
+    <mj-raw>
+      <!-- Intro text -->
+    </mj-raw>
+    <mj-section background-color="#fafafa">
+      <mj-column width="400px">
+        <mj-text
+          font-style="italic"
+          font-size="20px"
+          font-family="Helvetica Neue"
+          color="#626262"
+          >Membership Confirmation</mj-text
+        >
+        <mj-text color="#525252"
+          >Thank you signing up for a membership! Here is your email
+          confirmation.</mj-text
+        >
+      </mj-column>
+    </mj-section>
+    <mj-raw>
+      <!-- Side image -->
+    </mj-raw>
+    <mj-section background-color="white">
+      <mj-raw>
+        <!-- Left image -->
+      </mj-raw>
+      <mj-column>
+        <mj-text
+          font-style="italic"
+          font-size="20px"
+          font-family="Helvetica Neue"
+          color="#626262"
+          >Contact Information</mj-text
+        >
+        <mj-text>Name: <%=@membership.name %></mj-text>
+        <mj-text>Phone: <%=@membership.phone %></mj-text>
+        <mj-text>Email:<%=@membership.email %></mj-text>
+        <mj-text>Additional Members: <%=@membership.notes %></mj-text>
+      </mj-column>
+      <mj-raw>
+        <!-- right paragraph -->
+      </mj-raw>
+      <mj-column>
+        <mj-text
+          font-style="italic"
+          font-size="20px"
+          font-family="Helvetica Neue"
+          color="#626262"
+          >Total</mj-text
+        >
+        <mj-text>Charged Today: $<%=@confirm_details[:total] %></mj-text>
+        <mj-text
+          >Recurring: $<%=@confirm_details[:recurring] %> every
+          <%=@confirm_details[:interval] %></mj-text
+        >
+        <mj-text></mj-text>
+      </mj-column>
+    </mj-section>
+    <mj-section background-color="white">
+      <mj-column>
+        <mj-image
+          width="400px"
+          src="<%=@confirm_details[:signature] %>"
+        ></mj-image>
+        <mj-text
+          font-style="italic"
+          font-size="20px"
+          font-family="Helvetica Neue"
+          color="#626262"
+        >
+          By signing above, I agree to the recurring charge listed above to my
+          credit card provided. I agree that I will pay in accordance with the
+          issuing bank cardholder agreement. This contract and the recurring
+          memberships can be cancelled by email (Cidercade@bishopcider.com) or
+          by text (214-364-7728). Upon cancellation, the memberships and
+          corresponding benefits will expire 30 days after the last renewal, but
+          no additional charges will be made.
+        </mj-text>
+      </mj-column>
+    </mj-section>
+    <mj-raw>
+      <!-- Icons -->
+    </mj-raw>
+    <mj-section>
+      <mj-column width="400px">
+        <mj-button
+          background-color="#fff"
+          color="#333"
+          href="https://dashboard.crowdflare.app/customer_portal?email=<%=@membership.email %>"
+          >Click Here to manage your membership.</mj-button
+        >
+      </mj-column>
+    </mj-section>
+    <mj-section background-color="#fbfbfb">
+      <mj-column width="400px">
+        <mj-button background-color="#F45E43" href="http://crowdflare.app/"
+          >Memberships powered by Crowdflare</mj-button
+        >
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>

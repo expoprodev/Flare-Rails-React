@@ -1,0 +1,24 @@
+<% if current_user.company.program_code.blank? %>
+<div class="callout alert">
+  <h5>No phone number selected.</h5>
+  <p>You have not choosen a phone number for your account.</p>
+  <%= link_to "Click here to choose one now.", get_number_path %></a>
+</div>
+<% end %>
+<% if current_user.company.stripe_customer.blank? %>
+<div class="callout alert">
+  <h5>No card file.</h5>
+  <p>Please set up billing. Notifications and Texts messaging will not work until a card is added.</p>
+  <%= link_to "Click here to add one now.", billing_path %></a>
+</div>
+<% end %>
+<h3>Activity</h3>
+  <%= react_component("Activity/OverviewCards", {
+        total_members: number_with_delimiter(@total_members),
+        active_subscriptions: number_with_delimiter(@active_subscriptions),
+      }) %>
+  <br/><br/>
+  <%# <%= react_component("Activity/ListPayouts", { payouts: @payouts.data }) %>
+  <br/><br/>
+  <% # react_component("Activity/ListActivity", { incidents: @incidents }) %>
+

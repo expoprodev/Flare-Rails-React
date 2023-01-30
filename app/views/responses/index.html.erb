@@ -1,0 +1,31 @@
+<div class="clearfix">
+  <h3 class="float-left">Responses</h3>
+  <% if can? :manage, Response %>
+    <a href="<%= new_response_path %>" class="button float-right">Add</a>
+  <% end %>
+</div>
+<div class="table-scroll">
+  <table class="hover dashboard-activity dtable">
+    <thead>
+      <tr>
+        <th width="">Message</th>
+        <th width="">Created</th>
+        <th width="">Default</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @responses.sort_by(&:created_at).each do |response| %>
+      <tr>
+        <td><%= link_to response.message, edit_response_path(response) %></td>
+        <td><%= response.created_at.in_time_zone(current_user.timezone).strftime("%m/%d/%Y %I:%M %P") %></td>
+        <td><%= response.is_default %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<script>
+$(document).ready(function(){
+    $('.dtable').DataTable();
+} );
+</script>

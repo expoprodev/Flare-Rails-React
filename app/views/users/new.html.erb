@@ -1,0 +1,80 @@
+<h3>Invite User</h3>
+
+<div class="grid-x grid-padding-x">
+  <div class="cell small-12 medium-4">
+    <%= simple_form_for(@user, url: invite_user_path) do |f| %>
+      <%= f.error :base %>
+      <%= f.input :name %>
+      <%= f.input :email %>
+      <%= f.input :pin %>
+      <div>
+        <label class="" for="">Role</label>
+        <%= f.collection_select(:role, User::ROLES, :to_s, lambda{|i| i.to_s.humanize}) %>
+      </div>
+      <%= f.submit "Save", class: "button" %>
+    <% end %>
+  </div>
+  <div class="cell small-12 medium-8">
+  <h4>Roles</h4>
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>Admin</th>
+          <th>Editor</th>
+          <th>Viewer</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>Manage Billing</th>
+          <td>X</td>
+          <td>X</td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>Manage Codes</th>
+          <td>X</td>
+          <td>X</td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>Manage Users</th>
+          <td>X</td>
+          <td>X</td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>View Analytics</th>
+          <td>X</td>
+          <td>X</td>
+          <td>X</td>
+        </tr>
+        <tr>
+          <th>View Codes</th>
+          <td>X</td>
+          <td>X</td>
+          <td>X</td>
+        </tr>
+        <tr>
+          <th>View Users</th>
+          <td>X</td>
+          <td>X</td>
+          <td>X</td>
+        </tr>
+        <tr>
+          <th>View Activity</th>
+          <td>X</td>
+          <td>X</td>
+          <td>X</td>
+        </tr>
+        <tr>
+          <th>Log Incident</th>
+          <td>X</td>
+          <td>X</td>
+          <td>X</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

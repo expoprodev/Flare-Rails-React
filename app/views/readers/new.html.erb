@@ -1,0 +1,4 @@
+<%= simple_form_for(@reader) do |f| %>
+  <%= f.error :base %>
+  <%= react_component("Readers/NewReader", {  reader: @reader }) %>
+<% end %>

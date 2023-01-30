@@ -1,0 +1,120 @@
+<h3>Billing</h3>
+
+<%= react_component("Billing/ShowBilling", { connected_account: @connected_account, company: @company, stripe_connect_url: ENV["STRIPE_EXPRESS"] }) %>
+
+
+
+<div class="grid-x">
+  <div class="cell small-12 medium-4">
+    <div class="notice-body" id="stripe_error"></div>
+    <% unless @company.stripe_customer.blank? %>
+      <strong>Current Card:</strong>
+      <br/>
+      <%= @company.stripe_customer[:brand] %> ending in <%= @company.stripe_customer[:last4] %>
+      <br/><br/>
+    <% end %>
+
+    <!--
+    <%= simple_form_for @company, url: update_card_path, html: { id: "edit_company" } do |f| %>
+      <%= f.input :stripe_card_token, as: :hidden %>
+      <div class="field">
+        <%= label_tag :card_number, "Credit Card Number" %>
+        <%= text_field_tag :card_number, nil, name: nil %>
+      </div>
+      <br />
+      <div class="field">
+        <%= label_tag :card_month, "Card Expiration" %>
+        <div class="grid-x grid-margin-x">
+          <div class="cell small-5">
+            <%= select_month nil, {}, { name: nil, id: "card_month" } %>
+          </div>
+          <div class="cell small-4">
+            <%= select_year nil, { start_year: Date.today.year, end_year: Date.today.year + 15 }, { name: nil, id: "card_year" } %>
+          </div>
+          <div class="cell small-3">
+            <%= text_field_tag :card_code, nil, name: nil, placeholder: "CVC" %>
+          </div>
+        </div>
+      </div>
+    <br/>
+    <div class="actions"><%= f.submit "Save", class: "button" %></div>
+    <% end %>
+    -->
+  </div>
+  <div class="cell small-12 medium-2"></div>
+  <div class="cell small-12 medium-6">
+    <h4>Past Invoices</h4>
+    <table>
+    <tr>
+      <th>Date</th>
+      <th>Amount</th>
+      <th>Card</th>
+    </tr>
+    <% if @charges.blank? || @charges.data.blank? %>
+      <tr>
+        <td colspan="3">No Invoices</td>
+      </tr>
+    <% else %>
+      <% @charges.data.each do |charge| %>
+        <tr>
+          <td>
+            <%= Time.at(charge.created).strftime("%Y-%m-%d") %>
+          </td>
+          <td>
+            <%= number_to_currency(charge.amount / 100) %>
+          </td>
+          <td>
+            <%= "#{charge.source.brand} #{charge.source.last4}" %>
+          </td>
+        </tr>
+      <% end %>
+    <% end %>
+    </table>
+  </div>
+
+  <div>
+  <%unless @company.stripe_user_id.blank? %>
+<%= link_to "Stripe dashboard", Stripe::Account.create_login_link(@company.stripe_user_id).url %>
+  <%end %>
+
+  </div>
+</div>
+
+<script>
+var paymentMethod = {
+	setupForm: function(){
+		$('#edit_company').submit(function(e){
+			e.preventDefault();
+			$('input[type=submit]').attr('disabled', true);
+      paymentMethod.processCard();
+		});
+	},
+	processCard: function(){
+		var card = {
+			number: $('#card_number').val(),
+			cvc: $('#card_code').val(),
+			expMonth: $('#card_month').val(),
+			expYear: $('#card_year').val()
+		};
+		Stripe.createToken(card, paymentMethod.handleStripeResponse);
+	},
+	handleStripeResponse: function(status, response){
+		if(status == 200) {
+			$('#company_stripe_card_token').val(response.id)
+			$('#edit_company')[0].submit()
+		}
+		else
+		{
+      $('#stripe_error').closest('.notice').removeClass('hide');
+			$('#stripe_error').text(response.error.message);
+			$('input[type=submit]').attr('disabled', false);
+		}
+	}
+}
+
+Stripe.setPublishableKey($('meta[name="stripe-key"]').attr('content'));
+
+$(document).ready(function(){
+  paymentMethod.setupForm();
+});
+</script>

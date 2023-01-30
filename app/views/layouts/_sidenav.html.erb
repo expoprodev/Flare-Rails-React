@@ -1,0 +1,33 @@
+<ul class="vertical menu sidenav">
+  <div class="sidenav-title">Menu</div>
+  <% if can? :read, :activity %>
+    <li <% if (current_page?(dashboard_path)) %>class="is-active"<% end %>><a href="<%= dashboard_path %>">Activity</a></li>
+  <% end %>
+  <% if can? :manage, :analytic %>
+    <li <% if current_page?(analytics_path) %>class="is-active"<% end %>><a href="<%= analytics_path %>">Analytics</a></li>
+  <% end %>
+  <% if can? :manage, Code %>
+    <li <% if current_page?(codes_path) %>class="is-active"<% end %>><a href="<%= codes_path %>">Codes</a></li>
+  <% end %>
+  <% if can? :manage, Coupon %>
+    <li <% if current_page?(coupons_path) %>class="is-active"<% end %>><a href="<%= coupons_path %>">Coupons</a></li>
+  <% end %>
+  <% if can? :manage, :customers %>
+    <li <% if current_page?(customers_path) %>class="is-active"<% end %>><a href="<%= customers_path %>">Guests</a></li>
+  <% end %>
+  <% if can? :read, Membership %>
+    <li <% if current_page?(memberships_path) || current_page?(root_path) %>class="is-active"<% end %>><a href="<%= memberships_path %>">Members</a></li>
+  <% end %>
+  <% if can? :manage, Plan %>
+    <li <% if current_page?(plans_path) %>class="is-active"<% end %>><a href="<%= plans_path %>">Plans</a></li>
+  <% end %>
+  <% if can? :read, Reader %>
+    <li <% if current_page?(readers_path) %>class="is-active"<% end %>><a href="<%= readers_path %>">Readers</a></li>
+  <% end %>
+  <% if can? :manage, Incident %>
+    <li <% if current_page?(incidents_path) %>class="is-active"<% end %>><a href="<%= incidents_path %>">Requests</a></li>
+  <% end %>
+  <% if can? :manage, TaxRate %>
+    <li <% if current_page?(tax_rates_path) %>class="is-active"<% end %>><a href="<%= tax_rates_path %>">Tax Rates</a></li>
+  <% end %>
+</ul>

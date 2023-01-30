@@ -1,0 +1,9 @@
+<%= react_component("Analytics/ShowAnalytics", {
+  percent_status: @percent_status,
+  incident_count_by_month: @incident_count_by_month,
+  down_count_by_hour: @down_count_by_hour,
+  up_count_by_hour: @up_count_by_hour,
+  distribution_by_tag: @distribution_by_tag,
+  top_incident_by_tag: @top_incident_by_tag&.take(5) || [],
+  top_incidents: @incidents&.take(5) || []
+}) %>

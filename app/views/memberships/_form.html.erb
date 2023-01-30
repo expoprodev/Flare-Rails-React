@@ -1,0 +1,12 @@
+<%= simple_form_for(@membership) do |f| %>
+  <%= f.error :base %>
+  <%= react_component("Memberships/NewMembership", {
+        membership: @membership,
+        plans: @plans.order(:default, :name),
+        tax_rates: @tax_rates.order(:default, :display_name),
+        coupons: @coupons.order(:name),
+        stripe_location_id: current_user.default_location.stripe_location_id,
+      }) %>
+<% end %>
+
+

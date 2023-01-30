@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Crowdflare</title>
+
+
+
+    <%= javascript_include_tag "application" %>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <%= javascript_include_tag "https://js.stripe.com/v1/" %>
+    <%= javascript_include_tag "https://js.stripe.com/terminal/v1/" %>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+
+
+    <%= tag :meta, :name => "stripe-key", :content => ENV["STRIPE_PUBLISHABLE_KEY"] %>
+  </head>
+
+  <body>
+    <%= react_component("App", {current_user: current_user, locations: current_user.company.locations, current_location: current_user.default_location}, {tag: 'span'}) %>
+  </body>
+</html>

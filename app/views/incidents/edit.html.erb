@@ -1,0 +1,14 @@
+<h2>Edit Incident</h2>
+<div class="grid-x">
+  <div class="cell small-12 medium-4">
+    <%= simple_form_for([@incident.code, @incident]) do |f| %>
+      <%= f.error :base %>
+      <div>
+        <label class="" for="">Status</label>
+        <%= f.collection_select(:status, Incident::STATUSES, :first, :last) %>
+      </div>
+      <%= f.input :notes %>
+      <%= f.submit "Save", class: "button" %>
+    <% end %>
+  </div>
+</div>

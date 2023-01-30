@@ -1,0 +1,33 @@
+<h3>Available Numbers</h2>
+<div class="grid-x">
+  <div class="cell small-12 medium-4">
+    <%= simple_form_for(:search, url: get_number_path, :method => :get) do |f| %>
+      <%= f.input :search, label: 'Search Area Code', input_html: {value: @search} %>
+      <%= f.submit "Search", class: "button" %>
+    <% end %>
+  </div>
+</div>
+<div class="table-scroll">
+  <table class="hover dashboard-activity">
+    <thead>
+      <tr>
+        <th width="">Phone Number</th>
+        <th width="200">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @numbers.blank? %>
+        <tr>
+          <td colspan="2">We did not find any available numbers with that area code.</td>
+        </tr>
+      <% else %>
+        <% @numbers.each do |number| %>
+        <tr>
+          <td><%=number.friendly_name%></td>
+          <td><%=link_to 'Choose this number', choose_number_path(number.phone_number), method: :post%></td>
+        </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>

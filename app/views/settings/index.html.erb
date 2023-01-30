@@ -1,0 +1,25 @@
+<h3>Settings & Information</h3>
+<div class="grid-x">
+  <div class="cell small-12 medium-6">
+    <div class="clearfix">
+      <h4 class="float-left">Company Info</h4>
+      <%= link_to 'Edit', edit_company_path(@company), class: ' button
+        float-right'%>
+    </div>
+    <div class="">
+      <strong>Name:</strong> <%= @company.name %><br/>
+      <strong>Address:</strong> <%= @company.address %><br/>
+      <strong>Suite/Unit:</strong> <%= @company.address_ext %><br/>
+      <strong>City:</strong> <%= @company.city %><br/>
+      <strong>State:</strong> <%= @company.state %><br/>
+      <strong>Zip:</strong> <%= @company.zip %><br/>
+    </div>
+  </div>
+  <div class="cell small-12 medium-2"></div>
+  <div class="cell small-12 medium-4">
+    <div>
+      <strong>Your number:</strong>
+      <%=@company.program_code %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,54 @@
+<h2><%= @code.label %> (<%=@code.code%>)</h2>
+<%@code.tags.each do |tag|%>
+  <span class="label"><%=tag.name%></span>
+<%end%>
+<br />
+<br />
+<div class="float-right">
+  <%= link_to 'Report', new_code_incident_path(@code), class: 'button secondary' %>
+  <% if can? :manage, Code%>
+    <%= link_to 'Edit', edit_code_path(@code), class: 'button' %>
+  <% end %>
+</div>
+<div class="">Status: <%=@code.display_status%></div>
+<h2>Incident Log</h2>
+<div class="table-scroll">
+  <table>
+    <thead>
+      <tr>
+        <th width="200">Reported at</th>
+        <th>Reported by phone</th>
+        <th>Reported by User</th>
+        <th>Status</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if !@code.incidents.empty? %>
+        <% @code.incidents.sort_by(&:created_at).reverse.each do |incident|%>
+          <tr>
+            <td><%=incident.created_at.in_time_zone(current_user.timezone).strftime("%m/%d/%Y %I:%M %P")%></td>
+            <td><%=incident.reported_by_phone%></td>
+            <td><%=incident.reported_by_user_id ? User.find(incident.reported_by_user_id).name : ''%></td>
+            <td><%=incident.display_status%></td>
+            <td><%=incident.notes%></td>
+          </tr>
+        <% end %>
+      <% else %>
+        <tr>
+          <td colspan="6">No incidents logged.</td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<div class="">
+  <% if can? :manage, Code%>
+    <%= link_to 'Delete', @code, method: :delete, class: 'button alert', data: {confirm: "Are you sure you want to delete? Try deactivating instead, you are not charged for inactive codes."} %>
+    <% if @code.status == Code::INACTIVE %>
+      <%= link_to 'Reactivate', reactivate_code_path(@code), class: 'button default' %>
+    <% else %>
+      <%= link_to 'Deactivate', deactivate_code_path(@code), class: 'button default' %>
+    <% end %>
+  <% end %>
+</div>

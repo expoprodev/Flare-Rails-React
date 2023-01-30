@@ -1,0 +1,14 @@
+<h3>Add Code</h3>
+<div class="grid-x">
+  <div class="cell small-12 medium-4">
+    <%= simple_form_for(@code) do |f| %>
+      <%= f.error :base %>
+      <%= f.input :location_id, collection: current_user.company.locations.map{|c| [c.name, c.id]}, selected: current_user.default_location_id %>
+      <%= f.input :group_id, collection: current_user.company.groups.map{|c| [c.name, c.id]} %>
+      <%= f.input :code, input_html: {value: Random.new.rand(1..1000000)} %>
+      <%= f.input :label %>
+      <%= f.input :tag_list, label: 'Tags (separated by commas)', input_html: {value: @code.tag_list.join(', ')} %>
+      <%= f.submit "Create", class: "button" %>
+    <% end %>
+  </div>
+</div>
